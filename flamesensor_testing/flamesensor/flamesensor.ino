@@ -1,9 +1,9 @@
 #include<SoftwareSerial.h>
 
-int sensorPin = D2; // select the input pin for the LDR
-int sensorValue = 0; // variable to store the value coming from the sensor
-int led = D4; // Output pin for LED
-int buzzer = D0; // Output pin for Buzzer
+int sensorPin = D0; // select the input pin for the LDR
+int sensorValue; // variable to store the value coming from the sensor
+int led =D2 ; // Output pin for LED
+int buzzer = D4; // Output pin for Buzzer
 
 void setup() {
 
@@ -16,13 +16,13 @@ Serial.begin(9600);
 void loop()
 {
 
-Serial.println("Welcome to TechPonder Flame Sensor Tutorial");
+Serial.println("Flame Sensor Testing.........");
 sensorValue = digitalRead(sensorPin);
-Serial.println(sensorValue);
+//Serial.println(sensorValue);
 
 if (sensorValue == 0){
-Serial.println("Fire Detected");
-Serial.println("LED on");
+Serial.println(".......Fire Detected.....");
+Serial.println("........WARNING.......");
 digitalWrite(led,HIGH);
 digitalWrite(buzzer,HIGH);
 delay(1000);
