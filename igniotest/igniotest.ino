@@ -29,7 +29,7 @@ JsonObject& JSONencoder = JSONbuffer.createObject();
 JSONencoder["deviceId"] = "NODEIGNIOF101";
 
 timeClient.update();
-long unsigned int current = timeClient.getEpochTime();
+ int current = timeClient.getEpochTime();
 Serial.println(current);
 
 
