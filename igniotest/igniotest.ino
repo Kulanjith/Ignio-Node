@@ -29,8 +29,10 @@ JsonObject& JSONencoder = JSONbuffer.createObject();
 JSONencoder["deviceId"] = "NODEIGNIOF101";
 
 timeClient.update();
- int current = timeClient.getEpochTime();
-Serial.println(current);
+String current_date_time = timeClient.getFormattedDate();
+int splitT = current_date_time.indexOf("T");
+String epoch = current_date_time.substring(0, splitT) + " " + current_date_time.substring(splitT+1, current_date_time.length()-1);;
+Serial.println(epoch);
 
 
 JsonArray& sensorData = JSONencoder.createNestedArray("sensorData");
@@ -43,7 +45,7 @@ JsonArray& sensorData = JSONencoder.createNestedArray("sensorData");
            object["co_percentage"] =  10.34 ;
            object["lp_gas_percentage"] =  29.24 ;
            object["particle_percentage"] =  12.34 ;
-           object["epoch"] =  current ;
+           object["epoch"] =  epoch ;
      // }
 
 
@@ -51,7 +53,7 @@ JsonArray& sensorData = JSONencoder.createNestedArray("sensorData");
     
     
        
-JSONencoder["epoch"] = 328102338964;
+JSONencoder["epoch"] = epoch;
 char JSONmessageBuffer[1200];
 JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
 //Serial.println(JSONmessageBuffer);
